@@ -9,15 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var user_registration_service_1 = require('./user-registration.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(userRegistrationService) {
+        this.userRegistrationService = userRegistrationService;
+        this.users = [];
     }
+    AppComponent.prototype.ngOnInit = function () {
+        console.log(this.getHeroes());
+    };
+    AppComponent.prototype.getHeroes = function () {
+        this.users = this.userRegistrationService.getUsers();
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'user-registration-component',
-            template: '<h1>Hello world!</h1>'
+            templateUrl: 'src/app/user-registration/user-registration.template.html',
+            providers: [user_registration_service_1.UserRegistrationService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [user_registration_service_1.UserRegistrationService])
     ], AppComponent);
     return AppComponent;
 }());

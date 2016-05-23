@@ -1,8 +1,23 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserRegistrationService} from './user-registration.service'
 
 @Component({
     selector: 'user-registration-component',
-    template: '<h1>Hello world!</h1>'
+    templateUrl:'src/app/user-registration/user-registration.template.html',
+    providers: [UserRegistrationService]
 })
 
-export class AppComponent { }
+export class AppComponent implements OnInit {
+
+    users = [];
+
+    constructor(private userRegistrationService: UserRegistrationService) { }
+
+    ngOnInit() {
+        console.log(this.getHeroes());
+    }
+
+    getHeroes() {
+        this.users = this.userRegistrationService.getUsers();
+    }
+}
