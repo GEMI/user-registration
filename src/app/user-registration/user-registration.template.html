@@ -1,9 +1,34 @@
-<div>
-    <div *ngIf="users">
-        <ul>
-            <li *ngFor="let user of users">
-                {{ user }}
-            </li>
-        </ul>
+<div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="first-name">
+        <label class="mdl-textfield__label" for="first-name">First name</label>
     </div>
+    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="last-name">
+        <label class="mdl-textfield__label" for="last-name">Last name</label>
+    </div>
+    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="address1">
+        <label class="mdl-textfield__label" for="address1">Address 1</label>
+    </div>
+    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="address2">
+        <label class="mdl-textfield__label" for="address2">Address 2</label>
+    </div>
+    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="city">
+        <label class="mdl-textfield__label" for="city">City</label>
+    </div>
+    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="zip-code">
+        <label class="mdl-textfield__label" for="zip-code">Zip code</label>
+    </div>
+    <div class="mdl-cell--8-col">
+        <button class="mdl-cell--bottom mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Register
+        </button>
+    </div>
+</div>
+<div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+    <user-list-component></user-list-component>
 </div>
