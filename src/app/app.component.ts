@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgForm} from '@angular/common';
-import {UserRegistrationStore} from './user-registration/user-registration.service'
+import {UserRegistrationStore} from './user-registration/user-registration.store'
 import {UserRegistrationComponent} from './user-registration/user-registration.component';
 import {UserListComponent} from './user-list/user-list.component';
 

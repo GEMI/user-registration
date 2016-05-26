@@ -1,28 +1,28 @@
-<form (ngSubmit)="registerUser(userForm.value)" #userForm="ngForm" class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+<form (ngSubmit)="registerUser(userForm.value)" #userForm="ngForm" 
+        class="registration-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--2-offset">
     <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input required [(ngModel)]="model.firstName" ngControl="firstName" #firstName="ngForm" class="mdl-textfield__input" type="text" id="first-name">
-        <label [hidden]="!firstName.pristine" class="mdl-textfield__label" for="first-name">First name</label>
+        <input required [(ngModel)]="model.firstName" ngControl="firstName" #firstName="ngForm" class="mdl-textfield__input" placeholder="First name *" type="text" id="first-name">
     </div>
     <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input required [(ngModel)]="model.lastName" ngControl="lastName" #lastName="ngForm" class="mdl-textfield__input" type="text" id="last-name">
-        <label [hidden]="!lastName.pristine" class="mdl-textfield__label" for="last-name">Last name</label>
+        <input required [(ngModel)]="model.lastName" ngControl="lastName" #lastName="ngForm" class="mdl-textfield__input" placeholder="Last name *" type="text" id="last-name">
     </div>
     <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input required [(ngModel)]="model.address1" ngControl="address1" #address1="ngForm" class="mdl-textfield__input" type="text" id="address1">
-        <label [hidden]="!address1.pristine" class="mdl-textfield__label" for="address1">Address 1</label>
+        <input required [(ngModel)]="model.address1" ngControl="address1" #address1="ngForm" class="mdl-textfield__input" placeholder="Address 1 *" type="text" id="address1">
     </div>
     <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.address2" ngControl="address2" #address2="ngForm" class="mdl-textfield__input" type="text" id="address2">
-        <label [hidden]="!address2.pristine" class="mdl-textfield__label" for="address2">Address 2</label>
+        <input [(ngModel)]="model.address2" ngControl="address2" #address2="ngForm" class="mdl-textfield__input" placeholder="Address 2" type="text" id="address2">
     </div>
     <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.city" ngControl="city" #city="ngForm" class="mdl-textfield__input" type="text" id="city">
-        <label [hidden]="!city.pristine" class="mdl-textfield__label" for="city">City</label>
+        <input [(ngModel)]="model.city" ngControl="city" #city="ngForm" class="mdl-textfield__input" placeholder="City" type="text" id="city">
     </div>
     <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.zipCode" ngControl="zipCode" #zipCode="ngForm" class="mdl-textfield__input" type="text" id="zip-code">
-        <label [hidden]="!zipCode.pristine" class="mdl-textfield__label" for="zip-code">Zip code</label>
+        <input [(ngModel)]="model.zipCode" ngControl="zipCode" #zipCode="ngForm" class="mdl-textfield__input" placeholder="Zip code" type="text" id="zip-code">
     </div>
+
+    <div *ngIf="!isValid" class="mdl-cell--8-col mdl-error-text">
+        <p>Oops, your address seems to be invalid!</p>
+    </div>
+    
     <div class="mdl-cell--8-col">
         <button type="submit" [disabled]="!userForm.form.valid" class="mdl-cell--bottom mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
             Register user

@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {NgForm} from '@angular/common';
 import {User} from '../user/user.class';
-import {UserRegistrationStore} from './user-registration.service';
+import {UserRegistrationStore} from './user-registration.store';
 import {AddressValidationService} from '../validation/address-validation.service';
 
 @Component({
@@ -11,17 +11,32 @@ import {AddressValidationService} from '../validation/address-validation.service
 })
 
 export class UserRegistrationComponent {
-    constructor(private userRegistrationStore: UserRegistrationStore, private addressValidationService: AddressValidationService) { }
 
+    constructor(private userRegistrationStore: UserRegistrationStore, 
+                private addressValidationService: AddressValidationService, 
+                private ngZone: NgZone) { }
+                
     model = User;
+    isValid = true;
 
-    registerUser(user: User){
+    public registerUser(user: User){
+        var that = this;
         this.addressValidationService.validate(user).forEach(result => {
             if(result) {
-                this.userRegistrationStore.saveUser(user);
-            }  else {
-                 console.log("Needs validation message.");
+                that.userRegistrationStore.saveUser(user);
+                that.ngZone.run(() => {
+                    that.clearUserModel();
+                    that.isValid = true;
+                });
+            } else {
+                that.ngZone.run(() => {
+                    that.isValid = false;
+                });
             }
         });
     };
+
+    private clearUserModel(){
+        this.model = {};
+    }
 }

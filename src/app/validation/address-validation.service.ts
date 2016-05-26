@@ -17,11 +17,11 @@ export class AddressValidationService {
         return Observable.create((observer) => {
             this.geocoder.geocode({ 'address': this.getFormatedAddress(user) }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
+                    //Google Maps APi found this address, good enough
                     return observer.next(true);
                 }
                 return observer.next(false);
             }
         });
     }
-    
 }

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {User} from '../user/user.class';
-import {UserRegistrationStore} from '../user-registration/user-registration.service';
+import {UserRegistrationStore} from '../user-registration/user-registration.store';
 
 @Component({
     selector: 'user-list-component',
@@ -13,5 +13,5 @@ export class UserListComponent {
 
     constructor(private userRegistrationStore: UserRegistrationStore) {
         this.users = userRegistrationStore.users;
-     }
+    }
 }

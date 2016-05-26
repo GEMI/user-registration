@@ -1,5 +1,5 @@
-import { Injectable} from '@angular/core';
-import { User } from '../user/user.class';
+import {Injectable} from '@angular/core';
+import {User} from '../user/user.class';
 
 @Injectable()
 export class UserRegistrationStore {
@@ -15,14 +15,17 @@ export class UserRegistrationStore {
     }
 
     public saveUser(user:User) {
-        var currentUsers = this.getUsers();
+        this.saveToDatabase(user);
+        this.users.unshift(user);
+    }
 
+    private saveToDatabase(user:User){
+        var currentUsers = this.getUsers();
         if (Array.isArray(currentUsers)) {
-            currentUsers.push(user);
+            currentUsers.unshift(user);
             localStorage.setItem('users', JSON.stringify(currentUsers));
         } else {
             localStorage.setItem('users', JSON.stringify([user]));
         }
-        this.users.push(user);
     }
 }

@@ -1,9 +1,15 @@
-<div *ngIf="users" >
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let user of users">
+<div *ngIf="users">
+    <div class="registration-card-wide mdl-card mdl-shadow--2dp mdl-cell--8-col mdl-cell--2-offset" 
+        [ngClass]="{animated: first}" *ngFor="let user of users; let first = first">
+        
         <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">{{ user.firstName }} {{ user.lastName }}</h2>
+            <h2 class="mdl-card__title-text">
+                <i class="material-icons">account_box</i> 
+                {{ user.firstName }} {{ user.lastName }}
+            </h2>
         </div>
-        <div class="mdl-card__supporting-text">
+        
+        <div class="mdl-card__supporting-text">User address: 
             {{ user.address1 }}
             {{ user.address2 }}
             {{ user.city }}
