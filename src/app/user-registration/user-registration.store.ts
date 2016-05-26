@@ -19,6 +19,10 @@ export class UserRegistrationStore {
         this.users.unshift(user);
     }
 
+    public getNewUser(){
+        return new User("","","");
+    }
+
     private saveToDatabase(user:User){
         var currentUsers = this.getUsers();
         if (Array.isArray(currentUsers)) {

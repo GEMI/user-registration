@@ -16,7 +16,7 @@ export class UserRegistrationComponent {
                 private addressValidationService: AddressValidationService, 
                 private ngZone: NgZone) { }
                 
-    model = User;
+    model = this.userRegistrationStore.getNewUser();
     isValid = true;
 
     public registerUser(user: User){
@@ -37,6 +37,6 @@ export class UserRegistrationComponent {
     };
 
     private clearUserModel(){
-        this.model = {};
+        this.model = this.userRegistrationStore.getNewUser();
     }
 }
