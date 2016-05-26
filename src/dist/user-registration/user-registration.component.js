@@ -9,21 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var user_list_component_1 = require('../user-list/user-list.component');
-var AppComponent = (function () {
-    function AppComponent() {
+var user_class_1 = require('../user/user.class');
+var user_registration_service_1 = require('./user-registration.service');
+var UserRegistrationComponent = (function () {
+    function UserRegistrationComponent(userRegistrationStore) {
+        this.userRegistrationStore = userRegistrationStore;
+        this.model = user_class_1.User;
     }
-    AppComponent.prototype.ngOnInit = function () {
-        console.log("app init");
+    UserRegistrationComponent.prototype.registerUser = function (user) {
+        this.userRegistrationStore.saveUser(user);
     };
-    AppComponent = __decorate([
+    UserRegistrationComponent = __decorate([
         core_1.Component({
             selector: 'user-registration-component',
-            templateUrl: 'src/app/user-registration/user-registration.template.html',
-            directives: [user_list_component_1.UserListComponent]
+            templateUrl: 'src/app/user-registration/user-registration.template.html'
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [user_registration_service_1.UserRegistrationStore])
+    ], UserRegistrationComponent);
+    return UserRegistrationComponent;
 }());
-exports.AppComponent = AppComponent;
+exports.UserRegistrationComponent = UserRegistrationComponent;

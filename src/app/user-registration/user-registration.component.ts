@@ -1,16 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {UserListComponent} from '../user-list/user-list.component';
+import {Component, Input} from '@angular/core';
+import {NgForm} from '@angular/common';
+import {User} from '../user/user.class';
+import {UserRegistrationStore} from './user-registration.service';
 
 @Component({
     selector: 'user-registration-component',
-    templateUrl:'src/app/user-registration/user-registration.template.html',
-    directives: [UserListComponent]
+    templateUrl:'src/app/user-registration/user-registration.template.html'
 })
 
-export class AppComponent implements OnInit {
-    
-    ngOnInit() {
-        console.log("app init");
-    }
+export class UserRegistrationComponent {
+    constructor(private userRegistrationStore: UserRegistrationStore) { }
 
+    model = User;
+
+    registerUser(user: User){
+        this.userRegistrationStore.saveUser(user);
+    }
 }

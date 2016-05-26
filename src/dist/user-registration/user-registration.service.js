@@ -9,16 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var UserRegistrationService = (function () {
-    function UserRegistrationService() {
+var UserRegistrationStore = (function () {
+    function UserRegistrationStore() {
+        this.users = this.getUsers() || [];
     }
-    UserRegistrationService.prototype.getUsers = function () {
-        return ["Tom", "John"];
+    UserRegistrationStore.prototype.getUsers = function () {
+        return JSON.parse(localStorage.getItem('users'));
     };
-    UserRegistrationService = __decorate([
+    UserRegistrationStore.prototype.saveUser = function (user) {
+        var currentUsers = this.getUsers();
+        if (Array.isArray(currentUsers)) {
+            currentUsers.push(user);
+            localStorage.setItem('users', JSON.stringify(currentUsers));
+        }
+        else {
+            localStorage.setItem('users', JSON.stringify([user]));
+        }
+        this.users.push(user);
+    };
+    UserRegistrationStore = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], UserRegistrationService);
-    return UserRegistrationService;
+    ], UserRegistrationStore);
+    return UserRegistrationStore;
 }());
-exports.UserRegistrationService = UserRegistrationService;
+exports.UserRegistrationStore = UserRegistrationStore;

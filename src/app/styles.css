@@ -25,3 +25,8 @@
     padding: 80px 56px;
     margin-bottom: 80px;
 }
+
+.demo-card-wide.mdl-card {
+    width: 100%;
+    margin-bottom: 20px;
+}

@@ -1,24 +1,17 @@
 import {Component} from '@angular/core';
-import {UserRegistrationService} from '../user-registration/user-registration.service'
+import {User} from '../user/user.class';
+import {UserRegistrationStore} from '../user-registration/user-registration.service';
 
 @Component({
     selector: 'user-list-component',
-    templateUrl:'src/app/user-list/user-list.template.html',
-    providers: [UserRegistrationService]
+    templateUrl:'src/app/user-list/user-list.template.html'
 })
 
 export class UserListComponent {
 
-    users = [];
+    users: User[];
 
-    constructor(private userRegistrationService: UserRegistrationService) { }
-
-    getUsers() {
-        this.users = this.userRegistrationService.getUsers();
-    }
-    
-    ngOnInit() {
-        console.log("well");
-        this.getUsers();
-    }
+    constructor(private userRegistrationStore: UserRegistrationStore) {
+        this.users = userRegistrationStore.users;
+     }
 }
