@@ -1,31 +1,35 @@
-<form (ngSubmit)="registerUser(userForm.value)" #userForm="ngForm" 
-        class="registration-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--2-offset">
-    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.firstName" ngControl="firstName" #firstName="ngForm" class="mdl-textfield__input" placeholder="First name *" type="text" id="first-name">
+<form (submit)="registerUser()" [ngFormModel]="userForm" 
+        class="registration-content mdl-color--white mdl-shadow--4dp content mdl-cell--middle mdl-color-text--grey-800 mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+    
+    <div class="mdl-row">
+        <div class="mdl-cell--middle mdl-textfield mdl-js-textfield">
+            <input ngControl="firstName" #firstName="ngForm" class="mdl-textfield__input" placeholder="First name *" type="text" id="first-name">
+            <validation-message control="firstName"></validation-message>
+        </div>
     </div>
-    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.lastName" ngControl="lastName" #lastName="ngForm" class="mdl-textfield__input" placeholder="Last name *" type="text" id="last-name">
+    <div class="mdl-row">
+        <div class="mdl-cell--middle mdl-textfield mdl-js-textfield">
+            <input ngControl="lastName" #lastName="ngForm" class="mdl-textfield__input" placeholder="Last name *" type="text" id="last-name">
+            <validation-message control="lastName"></validation-message>
+        </div>
     </div>
-    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.address1" ngControl="address1" #address1="ngForm" class="mdl-textfield__input" placeholder="Address 1 *" type="text" id="address1">
-    </div>
-    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.address2" ngControl="address2" #address2="ngForm" class="mdl-textfield__input" placeholder="Address 2" type="text" id="address2">
-    </div>
-    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.city" ngControl="city" #city="ngForm" class="mdl-textfield__input" placeholder="City" type="text" id="city">
-    </div>
-    <div class="mdl-cell--8-col mdl-textfield mdl-js-textfield">
-        <input [(ngModel)]="model.zipCode" ngControl="zipCode" #zipCode="ngForm" class="mdl-textfield__input" placeholder="Zip code" type="text" id="zip-code">
-    </div>
-
-    <div *ngIf="!isValid" class="mdl-cell--8-col mdl-error-text">
-        <p>Oops, your address seems to be invalid!</p>
+    <div class="mdl-row">
+        <div class="mdl-cell--middle mdl-textfield mdl-js-textfield">
+            <input ngControl="address" #address="ngForm" class="mdl-textfield__input" placeholder="Address *" type="text" id="address">
+            <validation-message control="address"></validation-message>
+        </div>
     </div>
     
-    <div class="mdl-cell--8-col">
-        <button type="submit" [disabled]="!userForm.form.valid" class="mdl-cell--bottom mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            Register user
-        </button>
+    <div class="mdl-row"> 
+        <div class="mdl-cell--8-col">
+            <button type="submit" [disabled]="!userForm.valid" class="mdl-cell--bottom mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Register user
+            </button>
+        </div>
     </div>
+    
 </form>
+
+<div *ngIf="isUserCreated">
+    <snackbar [message]="'User was created successfully'"></snackbar>
+</div>

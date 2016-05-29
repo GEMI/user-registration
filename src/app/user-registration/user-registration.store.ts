@@ -19,12 +19,12 @@ export class UserRegistrationStore {
         this.users.unshift(user);
     }
 
-    public getNewUser(){
-        return new User("","","");
+    public getNewUser() {
+        return new User();
     }
 
-    private saveToDatabase(user:User){
-        var currentUsers = this.getUsers();
+    private saveToDatabase(user:User) {
+        let currentUsers = this.getUsers();
         if (Array.isArray(currentUsers)) {
             currentUsers.unshift(user);
             localStorage.setItem('users', JSON.stringify(currentUsers));

@@ -1,5 +1,5 @@
 <div *ngIf="users">
-    <div class="registration-card-wide mdl-card mdl-shadow--2dp mdl-cell--8-col mdl-cell--2-offset" 
+    <div class="registration-card-wide mdl-card mdl-shadow--2dp" 
         [ngClass]="{animated: first}" *ngFor="let user of users; let first = first">
         
         <div class="mdl-card__title">
@@ -9,11 +9,9 @@
             </h2>
         </div>
         
-        <div class="mdl-card__supporting-text">User address: 
-            {{ user.address1 }}
-            {{ user.address2 }}
-            {{ user.city }}
-            {{ user.zipCode }}
+        <div class="mdl-card__supporting-text">
+            <span class="mdl-label">Address:</span> 
+            {{ user.address }}
         </div>
     </div>
 </div>

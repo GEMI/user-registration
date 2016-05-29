@@ -17,13 +17,14 @@ body {
 
 .registration-content {
     border-radius: 2px;
-    padding: 40px 28px;
     margin-bottom: 4vh;
+    padding-top: 4vh;
 }
 
 .registration-card-wide.mdl-card {
     margin-bottom: 4vh;
     min-height: 140px;
+    width: 100%;
 }
 
 .material-icons {
@@ -41,6 +42,57 @@ body {
 .mdl-error-text {
     color: #F44336;
 }
+
+.mdl-success-text {
+    color: #4CAF50;
+}
+
+.mdl-row {
+    padding: 0 20px 20px 20px;
+}
+
+.mdl-row .mdl-textfield {
+    padding-right: 20px;
+}
+
+.mdl-card__supporting-text {
+    font-size: 16px;
+}
+
+.mdl-card__supporting-text .mdl-label {
+    font-weight: bold;
+}
+
+.snackbar-container {
+    position: absolute;
+    border-radius: 2px;
+    bottom: 40px;
+    left: 40px;
+    z-index: 100;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 20px;
+    background-color: #323232;
+    color: rgba(255,255,255,0.87);
+    
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    transform: translateY(100%);
+}
+
+
+@media (max-width: 839px) and (min-width: 480px) {
+    .mdl-cell--12-col-tablet.mdl-cell--12-col-tablet {
+        width: 100%;
+    }
+}
+
+@media (max-width: 479px) {
+    .mdl-cell--12-col-tablet.mdl-cell--12-col-tablet {
+        width: 100%;
+    }
+}
+
 
 .animated {
     opacity:0;
@@ -67,9 +119,16 @@ body {
 @-moz-keyframes fadeIn {
     from { opacity:0; } to { opacity:1; }
 }
-@-ms-keyframes fadeIn {
-    from { opacity:0; } to { opacity:1; }
+
+.slide-up { 
+    -webkit-animation: slideUp 1s forwards;
+    -moz-animation: slideUp 1s forwards;
+    animation: slideUp 1s forwards;
+}    
+
+@keyframes slideUp {
+    100% { transform: translateY(0%); }
 }
-@-o-keyframes fadeIn {
-    from { opacity:0; } to { opacity:1; }
+@-webkit-keyframes slideUp {
+    100% { -webkit-transform: translateY(0%); }
 }
