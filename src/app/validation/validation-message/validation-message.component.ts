@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { NgFormModel } from '@angular/common';
 import { ValidationService } from '../validation.service';
-     
+
 @Component({
     selector: 'validation-message',
     inputs: ['controlName: control'],
@@ -9,9 +9,9 @@ import { ValidationService } from '../validation.service';
 })
 
 export class ValidationMessageComponent {
-    
+
     private controlName: string;
-    
+
     constructor(@Host() private _formDir: NgFormModel) { }
      
     public get errorMessage() {     
@@ -23,8 +23,7 @@ export class ValidationMessageComponent {
                 return ValidationService.getValidatorErrorMessage(propertyName);
             }
         }
-            
+
         return null;
     }
-    
 }

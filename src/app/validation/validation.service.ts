@@ -9,22 +9,22 @@ interface ValidationResult{
 
 @Injectable()
 export class ValidationService {
-   
+
     public addressValidator(control: Control): Promise<ValidationResult> {
         let googleMaps = window['google'].maps;
         let geocoder = new googleMaps.Geocoder();
-        
-        return new Promise((resolve, reject) => {        
+
+        return new Promise((resolve, reject) => {
             geocoder.geocode({ 'address': control.value }, (results, status) => {
                 if(status === googleMaps.GeocoderStatus.OK) {
                     return resolve(null);
-                } else {                   
+                } else {
                     return resolve({'address': true});
-                }                    
+                }
             });
         });
     }
-    
+
     public startsWithUpperCase(control: Control): ValidationResult { 
         var firstLetter = control.value.charAt(0); 
         if (control.value && firstLetter !== firstLetter.toUpperCase()){
@@ -32,7 +32,7 @@ export class ValidationService {
         }
         return null;
     }
-    
+
     static getValidatorErrorMessage(code: string) {
         console.log("error code that we need: ", code);
         let config = {

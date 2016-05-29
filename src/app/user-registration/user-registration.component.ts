@@ -14,27 +14,27 @@ import {ValidationMessageComponent} from '../validation/validation-message/valid
 })
 
 export class UserRegistrationComponent {
-    
+
     public userForm: any;
     public firstName: Control;
     public lastName: Control; 
     public address: Control;
-    
+
     constructor(private userRegistrationStore: UserRegistrationStore, 
                 private validationService: ValidationService, 
                 private ngZone: NgZone, private formBuilder: FormBuilder) {
-                     
+
         this.firstName = new Control('', Validators.compose([Validators.required, Validators.minLength(3), validationService.startsWithUpperCase]));
         this.lastName = new Control('', Validators.compose([Validators.required, Validators.minLength(3), validationService.startsWithUpperCase]));
         this.address = new Control('', Validators.compose([Validators.required, Validators.minLength(3)]), validationService.addressValidator);
-        
+
         this.userForm = formBuilder.group({
             firstName: this.firstName,
             lastName: this.lastName,
-            address: this.address        
+            address: this.address
         });
     }
-                
+
     private isUserCreated = false;
 
     public registerUser() {
@@ -42,7 +42,7 @@ export class UserRegistrationComponent {
             this.userRegistrationStore.saveUser(this.buildNewUser(this.userForm));
             this.ngZone.run(() => {
                 this.showSuccessSnackbar(); 
-                this.clearUserForm();                  
+                this.clearUserForm();
             });
         }
     };
@@ -63,9 +63,8 @@ export class UserRegistrationComponent {
             this.isUserCreated = false;  
         }, 5000)
     }
-    
+
     private buildNewUser(form: any) {
         return new User(form.value.firstName, form.value.lastName, form.value.address);    
     }
-    
 }
