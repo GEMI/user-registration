@@ -4,7 +4,7 @@ import {UserRegistrationStore} from '../user-registration/user-registration.stor
 
 @Component({
     selector: 'user-list-component',
-    templateUrl: 'src/app/user-list/user-list.template.html'
+    templateUrl: './user-list.template.html'
 })
 
 export class UserListComponent {

@@ -1,10 +1,7 @@
 import { ValidationService } from './validation.service';
-import { User } from '../user/user.class';
 import { Control } from '@angular/common';
-import { Observable } from 'rxjs/Rx';
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { ReflectiveInjector, Injectable, provide } from '@angular/core';
-import { expect, it, describe, beforeEach, beforeEachProviders, inject } from '@angular/core/testing';
+import { ReflectiveInjector } from '@angular/core';
+import { expect, it, describe, beforeEachProviders, inject } from '@angular/core/testing';
 
 describe('Validation service', ()=> {
     beforeEachProviders(() => [ValidationService]);

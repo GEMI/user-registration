@@ -1,22 +1,20 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Control } from '@angular/common';
-import { User } from '../user/user.class';
-import { Observable } from 'rxjs/Rx';
 
-interface ValidationResult{
+interface ValidationResult {
     [key:string]:boolean;
 }
 
 @Injectable()
 export class ValidationService {
 
-    public addressValidator(control: Control): Promise<ValidationResult> {
+    public addressValidator(control:Control):Promise<ValidationResult> {
         let googleMaps = window['google'].maps;
         let geocoder = new googleMaps.Geocoder();
 
         return new Promise((resolve, reject) => {
-            geocoder.geocode({ 'address': control.value }, (results, status) => {
-                if(status === googleMaps.GeocoderStatus.OK) {
+            geocoder.geocode({'address': control.value}, (results, status) => {
+                if (status === googleMaps.GeocoderStatus.OK) {
                     return resolve(null);
                 } else {
                     return resolve({'address': true});
@@ -25,16 +23,15 @@ export class ValidationService {
         });
     }
 
-    public startsWithUpperCase(control: Control): ValidationResult { 
-        var firstLetter = control.value.charAt(0); 
-        if (control.value && firstLetter !== firstLetter.toUpperCase()){
+    public startsWithUpperCase(control:Control):ValidationResult {
+        let firstLetter = control.value.charAt(0);
+        if (control.value && firstLetter !== firstLetter.toUpperCase()) {
             return {'upper': true};
         }
         return null;
     }
 
-    static getValidatorErrorMessage(code: string) {
-        console.log("error code that we need: ", code);
+    static getValidatorErrorMessage(code:string) {
         let config = {
             'required': 'This field is required',
             'minlength': 'Minimum length is 3 characters',
@@ -42,5 +39,5 @@ export class ValidationService {
             'upper': 'Should start with an uppercase letter'
         };
         return config[code];
-    }  
+    }
 }

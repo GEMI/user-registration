@@ -6,24 +6,24 @@ import { Component } from '@angular/core';
 
 describe('User registration store', () => {
 
-    const expectedUser = '{"firstName":"Name","lastName":"Surname","address":"Address"}';
+    const expectedUser = "{'firstName':'Name','lastName':'Surname','address':'Address'}";
 
     beforeEachProviders(() => [UserRegistrationStore]);
     beforeEach(() => {
         //reset user count before each test
-        localStorage.setItem('users', "[]");
+        localStorage.setItem('users', '[]');
     });
 
     it('Should save and return user data', inject([UserRegistrationStore], (store:UserRegistrationStore) => {
-        store.saveUser(new User("Name", "Surname", "Address"));
-        expect(JSON.stringify(store.users[0])).toEqual(expectedUser); 
+        store.saveUser(new User('Name', 'Surname', 'Address'));
+        expect(JSON.stringify(store.users[0])).toEqual(expectedUser);
         expect(store.users.length).toEqual(1);
     }));
 
-    it('Should save and return multiple users data', inject([UserRegistrationStore], (store:UserRegistrationStore) => { 
-        expect(store.users.length).toEqual(0);   
-        store.saveUser(new User("Name", "Surname", "Address"));
-        store.saveUser(new User("Name", "Surname", "Address"));
+    it('Should save and return multiple users data', inject([UserRegistrationStore], (store:UserRegistrationStore) => {
+        expect(store.users.length).toEqual(0);
+        store.saveUser(new User('Name', 'Surname', 'Address'));
+        store.saveUser(new User('Name', 'Surname', 'Address'));
         expect(store.users.length).toEqual(2);
     }));
 
@@ -34,8 +34,8 @@ describe('User registration store', () => {
 
     it('Should return new empty user when calling getNewUser method', inject([UserRegistrationStore], (store:UserRegistrationStore) => {
         const user = store.getNewUser();
-        expect(user.firstName).toBe("");
-        expect(user.lastName).toBe("");
-        expect(user.address).toBe(""); 
+        expect(user.firstName).toBe('');
+        expect(user.lastName).toBe('');
+        expect(user.address).toBe('');
     }));
 });

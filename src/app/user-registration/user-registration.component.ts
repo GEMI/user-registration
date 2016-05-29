@@ -1,5 +1,5 @@
 import {Component, NgZone} from '@angular/core';
-import {NgForm, FORM_PROVIDERS, FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
+import {FORM_PROVIDERS, FormBuilder, Validators, Control } from '@angular/common';
 import {User} from '../user/user.class';
 import {SnackbarComponent} from '../snackbar/snackbar.component';
 import {UserRegistrationStore} from './user-registration.store';
@@ -8,21 +8,22 @@ import {ValidationMessageComponent} from '../validation/validation-message/valid
 
 @Component({
     selector: 'user-registration-component',
-    templateUrl: 'src/app/user-registration/user-registration.template.html',
+    templateUrl: './user-registration.template.html',
     providers: [ValidationService, FORM_PROVIDERS],
     directives: [SnackbarComponent, ValidationMessageComponent]
 })
 
 export class UserRegistrationComponent {
 
+    private isUserCreated = false;
     public userForm: any;
     public firstName: Control;
     public lastName: Control; 
     public address: Control;
 
-    constructor(private userRegistrationStore: UserRegistrationStore, 
-                private validationService: ValidationService, 
-                private ngZone: NgZone, private formBuilder: FormBuilder) {
+    constructor(private userRegistrationStore:UserRegistrationStore,
+                private validationService:ValidationService,
+                private ngZone:NgZone, private formBuilder:FormBuilder) {
 
         this.firstName = new Control('', Validators.compose([Validators.required, Validators.minLength(3), validationService.startsWithUpperCase]));
         this.lastName = new Control('', Validators.compose([Validators.required, Validators.minLength(3), validationService.startsWithUpperCase]));
@@ -35,8 +36,6 @@ export class UserRegistrationComponent {
         });
     }
 
-    private isUserCreated = false;
-
     public registerUser() {
         if (this.userForm.dirty && this.userForm.valid) {
             this.userRegistrationStore.saveUser(this.buildNewUser(this.userForm));
@@ -45,13 +44,13 @@ export class UserRegistrationComponent {
                 this.clearUserForm();
             });
         }
-    };
+    }
 
     private clearUserForm() {
         let formControls = this.userForm.controls;
         for (let abstractControl in formControls) {
             let control = (<Control> formControls[abstractControl]);
-            control.updateValue("");
+            control.updateValue('');
             control.setErrors(null);
             control.markAsPending();
         }
@@ -60,11 +59,11 @@ export class UserRegistrationComponent {
     private showSuccessSnackbar() {
         this.isUserCreated = true;
         setTimeout(() => {
-            this.isUserCreated = false;  
-        }, 5000)
+            this.isUserCreated = false;
+        }, 5000);
     }
 
     private buildNewUser(form: any) {
-        return new User(form.value.firstName, form.value.lastName, form.value.address);    
+        return new User(form.value.firstName, form.value.lastName, form.value.address);
     }
 }
