@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 
 describe('User registration store', () => {
 
-    const expectedUser = "{'firstName':'Name','lastName':'Surname','address':'Address'}";
+    const expectedUser = '{"firstName":"Name","lastName":"Surname","address":"Address"}';
 
     beforeEachProviders(() => [UserRegistrationStore]);
     beforeEach(() => {
